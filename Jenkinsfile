@@ -1,28 +1,23 @@
-        pipeline {
-            agent any
-            triggers {
-                pollSCM('*/5 * * * *') // Vérifier toutes les 5 minutes
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Add your build steps here
             }
-            stages {
-                stage('Checkout') {
-                    steps {
-                        echo "Récupération du code source"
-                        checkout scm
-                    }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                // Add your test steps here
             }
-            stage('Build') {
-                steps {
-                echo "Build du projet"
-            
-            // Ajoutez les commandes de build ici
-            
-                      }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                // Add your deployment steps here
             }
-            stage('Deploy') {
-                steps {
-                    echo "Déploiement du projet"
-            // Ajoutez les commandes de déploiement ici
-                }
-            }
-          }
-      }
+        }
+    }
+}
